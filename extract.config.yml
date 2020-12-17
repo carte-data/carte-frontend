@@ -1,0 +1,3 @@
+connections:
+  - type: glue
+    name: aws_glue
