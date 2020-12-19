@@ -1,16 +1,55 @@
-html,
-body {
-  padding: 0;
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
-    Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
-}
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
-a {
-  color: inherit;
-  text-decoration: none;
-}
+@layer base {
+  @font-face {
+      font-family: 'wotfard';
+      src: url('http://cartedata.com/static/fonts/wotfard-bold-webfont.eot');
+      src: url('http://cartedata.com/static/fonts/wotfard-bold-webfont.eot?#iefix') format('embedded-opentype'),
+          url('http://cartedata.com/static/fonts/wotfard-bold-webfont.woff2') format('woff2'),
+          url('http://cartedata.com/static/fonts/wotfard-bold-webfont.ttf') format('truetype');
+      font-weight: 800;
+      font-style: normal;
+  }
 
-* {
-  box-sizing: border-box;
+  @font-face {
+      font-family: 'wotfard';
+      src: url('http://cartedata.com/static/fonts/wotfard-light-webfont.eot');
+      src: url('http://cartedata.com/static/fonts/wotfard-light-webfont.eot?#iefix') format('embedded-opentype'),
+          url('http://cartedata.com/static/fonts/wotfard-light-webfont.woff2') format('woff2'),
+          url('http://cartedata.com/static/fonts/wotfard-light-webfont.ttf') format('truetype');
+      font-weight: 400;
+      font-style: normal;
+  }
+
+  @font-face {
+      font-family: 'wotfard';
+      src: url('http://cartedata.com/static/fonts/wotfard-medium-webfont.eot');
+      src: url('http://cartedata.com/static/fonts/wotfard-medium-webfont.eot?#iefix') format('embedded-opentype'),
+          url('http://cartedata.com/static/fonts/wotfard-medium-webfont.woff2') format('woff2'),
+          url('http://cartedata.com/static/fonts/wotfard-medium-webfont.ttf') format('truetype');
+      font-weight: 600;
+      font-style: normal;
+  }
+
+  @font-face {
+      font-family: 'wotfard';
+      src: url('http://cartedata.com/static/fonts/wotfard-regular-webfont.eot');
+      src: url('http://cartedata.com/static/fonts/wotfard-regular-webfont.eot?#iefix') format('embedded-opentype'),
+          url('http://cartedata.com/static/fonts/wotfard-regular-webfont.woff2') format('woff2'),
+          url('http://cartedata.com/static/fonts/wotfard-regular-webfont.ttf') format('truetype');
+      font-weight: 500;
+      font-style: normal;
+  }
+
+  @font-face {
+      font-family: 'wotfard';
+      src: url('http://cartedata.com/static/fonts/wotfard-semibold-webfont.eot');
+      src: url('http://cartedata.com/static/fonts/wotfard-semibold-webfont.eot?#iefix') format('embedded-opentype'),
+          url('http://cartedata.com/static/fonts/wotfard-semibold-webfont.woff2') format('woff2'),
+          url('http://cartedata.com/static/fonts/wotfard-semibold-webfont.ttf') format('truetype');
+      font-weight: 600;
+      font-style: normal;
+  }
 }
