@@ -1,6 +1,6 @@
 import fs from 'fs';
 import path from 'path';
-import frontmatter from 'front-matter';
+import matter from 'gray-matter';
 
 import { useRouter } from 'next/router';
 import {
@@ -17,25 +17,33 @@ const PAGE_TYPES = {
   DATASET: 'dataset',
 };
 
+const flagExpandedItem = (structure, slug) => {
+  if (slug.length >= 2) {
+    const [currentConnection, currentDatabase ] = slug;
+    structure[currentConnection].items[currentDatabase].expanded = true;
+  }
+  return structure;
+}
+
 const DatasetPage = ({ pageType, metadata, content, structure }) => {
   const router = useRouter();
   const { slug } = router.query;
+  const expandedStructure = flagExpandedItem(structure, slug);
 
   if (slug.length === 2) {
-    const [currentConnection, currentDb] = slug;
+    const [currentConnection, currentDatabase] = slug;
     return (
       <Layout sidebarStructure={structure}>
         <DatabaseDetails
-          structure={structure}
+          structure={expandedStructure}
           connection={currentConnection}
-          database={currentDb}
+          database={currentDatabase}
         />
       </Layout>
     );
   } else if (slug.length === 3) {
-    const [currentConnection, currentDb, currentDataset] = slug;
     return (
-      <Layout sidebarStructure={structure}>
+      <Layout sidebarStructure={expandedStructure}>
         <DatasetDetails metadata={metadata} content={content} />
       </Layout>
     );
@@ -53,7 +61,6 @@ export default DatasetPage;
 export async function getStaticPaths() {
   const datasetsStructure = await buildStructure();
   const paths = getPathsFromStructure(datasetsStructure);
-  console.log('PATHS: ', paths);
   return { paths, fallback: false };
 }
 
@@ -73,9 +80,10 @@ export async function getStaticProps(context) {
   );
 
   const fileContents = fs.readFileSync(filePath, 'utf8');
-  const { attributes: metadata, body: content } = frontmatter(fileContents);
+  const { data: metadata, content } = matter(fileContents);
+
 
   return {
-    props: { metadata, content, structure: datasetsStructure },
+    props: { metadata, content: content.trim(), structure: datasetsStructure },
   };
 }
