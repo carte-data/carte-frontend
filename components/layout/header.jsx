@@ -25,6 +25,11 @@ const Header = () => {
       url: '/dataset',
       isActive: (pathname) => pathname.startsWith('/dataset'),
     },
+    // {
+    //   text: 'Jobs',
+    //   url: '/job',
+    //   isActive: (pathname) => pathname.startsWith('/job'),
+    // }
   ];
 
   const router = useRouter();
@@ -32,7 +37,7 @@ const Header = () => {
   return (
     <header className="h-20 mx-auto px-12 sm:px-6 lg:px-32 flex flex-row">
       <nav className="flex flex-row w-full">
-        <div className="logo flex-none align-self-center w-60 flex items-center">
+        <div className="logo flex-none align-self-center w-80 flex items-center">
           <Link href="/">
             <a className="">
               <img
@@ -53,6 +58,11 @@ const Header = () => {
               active={link.isActive(router.pathname)}
             />
           ))}
+          <NavLink
+            text="Admin"
+            url="/admin/index.html"
+            active={false}
+          />
         </nav>
       </nav>
     </header>
