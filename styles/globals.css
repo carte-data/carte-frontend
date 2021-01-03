@@ -52,6 +52,26 @@
       font-weight: 600;
       font-style: normal;
   }
+
+  @font-face {
+      font-family: 'silka-mono';
+      src: url('http://cartedata.com/static/fonts/silkamono-regular-webfont.eot');
+      src: url('http://cartedata.com/static/fonts/silkamono-regular-webfont.eot?#iefix') format('embedded-opentype'),
+          url('http://cartedata.com/static/fonts/silkamono-regular-webfont.woff2') format('woff2'),
+          url('http://cartedata.com/static/fonts/silkamono-regular-webfont.ttf') format('truetype');
+      font-weight: 400;
+      font-style: normal;
+  }
+
+  @font-face {
+      font-family: 'silka-mono';
+      src: url('http://cartedata.com/static/fonts/silkamono-semibold-webfont.eot');
+      src: url('http://cartedata.com/static/fonts/silkamono-semibold-webfont.eot?#iefix') format('embedded-opentype'),
+          url('http://cartedata.com/static/fonts/silkamono-semibold-webfont.woff2') format('woff2'),
+          url('http://cartedata.com/static/fonts/silkamono-semibold-webfont.ttf') format('truetype');
+      font-weight: 600;
+      font-style: normal;
+  }
 }
 
 body {
@@ -66,4 +86,8 @@ body {
   @apply to-blue-400;
   background-size: 100% 0.2em;
   background-position: 0 88%;
+}
+
+.fadeout-right {
+  mask-image: linear-gradient(to right, black 75%, transparent 90%);
 }

@@ -15,6 +15,7 @@ module.exports = {
     },
     fontFamily: {
       sans: ['wotfard', 'sans-serif'],
+      mono: ['silka-mono', 'courier'],
     },
     extend: {},
   },
