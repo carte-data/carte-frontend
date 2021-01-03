@@ -1,0 +1,45 @@
+backend:
+  name: github
+  repo: carte-data/carte
+  branch: main
+media_folder: "public/images/uploads"
+custom_logo: https://cartedata.com/ligature.svg
+public_folder: "/images/uploads"
+collections:
+  - name: dataset
+    label: dataset
+    folder: data/datasets
+    create: false
+    delete: false
+    format: yaml-frontmatter
+    slug: '{{slug}}'
+    path: '{{fields.connection}}/{{fields.database}}/{{slug}}.md'
+    fields:
+      - label: Title
+        name: title
+        widget: string
+      - label: Connection
+        name: connection
+        widget: hidden
+      - label: Location
+        name: location
+        widget: hidden
+      - label: Database
+        name: database
+        widget: hidden
+      - label: Columns
+        name: columns
+        widget: list
+        allow_add: false
+        summary: '{{fields.name}}'
+        collapsed: true
+        fields:
+          - label: Name
+            name: name
+            widget: string
+          - label: Type
+            name: type
+            widget: hidden
+          - label: Description
+            name: description
+            widget: text
