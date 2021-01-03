@@ -10,11 +10,14 @@
   },
   "dependencies": {
     "autoprefixer": "^10.1.0",
-    "front-matter": "^4.0.2",
     "glob": "^7.1.6",
+    "gray-matter": "^4.0.2",
+    "lunr": "^2.3.9",
     "mousetrap": "^1.6.5",
+    "netlify-cms-app": "^2.14.8",
     "next": "10.0.3",
     "postcss": "^8.2.1",
+    "raw-loader": "^4.0.2",
     "react": "17.0.1",
     "react-dom": "17.0.1",
     "tailwindcss": "^2.0.2"
