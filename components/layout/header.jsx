@@ -17,7 +17,7 @@ const NavLink = ({ text, url, active }) => {
   );
 };
 
-const Header = () => {
+const Header = ({ searchIndex }) => {
   const links = [
     { text: 'Home', url: '/', isActive: (pathname) => pathname == '/' },
     {
@@ -33,6 +33,7 @@ const Header = () => {
   ];
 
   const router = useRouter();
+
 
   return (
     <header className="h-20 mx-auto px-12 sm:px-6 lg:px-32 flex flex-row">

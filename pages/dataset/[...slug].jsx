@@ -1,13 +1,14 @@
-import fs from 'fs';
 import path from 'path';
-import matter from 'gray-matter';
 
 import { useRouter } from 'next/router';
 import {
   buildStructure,
   getPathsFromStructure,
   parseSlug,
+  getDatasetContent,
 } from '../../lib/get-paths';
+import lunr from 'lunr';
+import { buildSearchIndexFromStructure } from '../../lib/search';
 import Layout from '../../components/layout/layout.jsx';
 import DatasetDetails from '../../components/dataset-details.jsx';
 import DatabaseDetails from '../../components/database-details.jsx';
@@ -19,21 +20,28 @@ const PAGE_TYPES = {
 
 const flagExpandedItem = (structure, slug) => {
   if (slug.length >= 2) {
-    const [currentConnection, currentDatabase ] = slug;
+    const [currentConnection, currentDatabase] = slug;
     structure[currentConnection].items[currentDatabase].expanded = true;
   }
   return structure;
-}
+};
 
-const DatasetPage = ({ pageType, metadata, content, structure }) => {
+const DatasetPage = ({
+  pageType,
+  metadata,
+  content,
+  structure,
+  searchIndex,
+}) => {
   const router = useRouter();
   const { slug } = router.query;
   const expandedStructure = flagExpandedItem(structure, slug);
+  const deserialisedIndex = lunr.Index.load(JSON.parse(searchIndex));
 
   if (slug.length === 2) {
     const [currentConnection, currentDatabase] = slug;
     return (
-      <Layout sidebarStructure={structure}>
+      <Layout sidebarStructure={structure} searchIndex={deserialisedIndex}>
         <DatabaseDetails
           structure={expandedStructure}
           connection={currentConnection}
@@ -43,7 +51,10 @@ const DatasetPage = ({ pageType, metadata, content, structure }) => {
     );
   } else if (slug.length === 3) {
     return (
-      <Layout sidebarStructure={expandedStructure}>
+      <Layout
+        sidebarStructure={expandedStructure}
+        searchIndex={deserialisedIndex}
+      >
         <DatasetDetails metadata={metadata} content={content} />
       </Layout>
     );
@@ -66,24 +77,22 @@ export async function getStaticPaths() {
 
 export async function getStaticProps(context) {
   const datasetsStructure = await buildStructure();
+  const searchIndex = JSON.stringify(buildSearchIndexFromStructure(datasetsStructure));
+
   const { slug } = context.params;
   const [conn, db, dataset] = parseSlug(slug);
   if (!dataset) {
-    return { props: { structure: datasetsStructure } };
+    return { props: { structure: datasetsStructure, searchIndex } };
   }
-  const filePath = path.join(
-    process.cwd(),
-    process.env.DATASET_SOURCE_DIR,
-    conn,
-    db,
-    dataset + '.md'
-  );
 
-  const fileContents = fs.readFileSync(filePath, 'utf8');
-  const { data: metadata, content } = matter(fileContents);
-
+  const [metadata, content] = getDatasetContent(conn, db, dataset);
 
   return {
-    props: { metadata, content: content.trim(), structure: datasetsStructure },
+    props: {
+      metadata,
+      content: content.trim(),
+      structure: datasetsStructure,
+      searchIndex,
+    },
   };
 }

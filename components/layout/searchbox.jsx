@@ -25,7 +25,7 @@ const SearchBox = ({ className }) => {
   };
 
   return (
-    <div className={className + ' flex flex-row h-full'}>
+    <form className={className + ' flex flex-row h-full'}>
       <svg
         className="w-5 text-gray-400"
         xmlns="http://www.w3.org/2000/svg"
@@ -48,7 +48,7 @@ const SearchBox = ({ className }) => {
         ref={searchInputRef}
         onChange={updateText}
       />
-    </div>
+    </form>
   );
 };
 
