@@ -1,5 +1,7 @@
+import { useContext } from 'react';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
+import { StructureContext } from '../../lib/structure-context';
 
 const SIDEBAR_HIGHLIGHT_COLOUR = 'text-green-500';
 
@@ -22,7 +24,7 @@ const SidebarSublink = ({ label, url }) => {
   );
 };
 
-const SidebarSection = ({ heading, items, key }) => {
+const SidebarSection = ({ heading, items, key, expandCurrent }) => {
   return (
     <div className="sidebar-section w-full" key={key}>
       <h3 className="font-medium text-xl my-2 text-gray-800">{heading}</h3>
@@ -39,9 +41,9 @@ const SidebarSection = ({ heading, items, key }) => {
                 {item.name}
               </a>
             </Link>
-            {item.expanded ? (
+            {item.expanded && expandCurrent ? (
               <div className="sublinks pl-4 mt-2 mb-4 border-l border-gray-200">
-                {item.items.map((subItem) => (
+                {Object.values(item.items).map((subItem) => (
                   <SidebarSublink
                     label={subItem.name}
                     url={subItem.url}
@@ -58,7 +60,13 @@ const SidebarSection = ({ heading, items, key }) => {
   );
 };
 
-const Sidebar = ({ structure }) => {
+SidebarSection.defaultProps = {
+  expandCurrent: false
+}
+
+const Sidebar = () => {
+  const structure = useContext(StructureContext);
+
   return (
     <div className="fadeout-right items-level-1">
       {Object.values(structure).map((item) => (

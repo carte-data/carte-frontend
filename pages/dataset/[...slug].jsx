@@ -2,10 +2,10 @@ import path from 'path';
 
 import { useRouter } from 'next/router';
 import {
-  buildStructure,
   getPathsFromStructure,
   parseSlug,
   getDatasetContent,
+  buildStructure,
 } from '../../lib/get-paths';
 import lunr from 'lunr';
 import { buildSearchIndexFromStructure } from '../../lib/search';
@@ -18,13 +18,6 @@ const PAGE_TYPES = {
   DATASET: 'dataset',
 };
 
-const flagExpandedItem = (structure, slug) => {
-  if (slug.length >= 2) {
-    const [currentConnection, currentDatabase] = slug;
-    structure[currentConnection].items[currentDatabase].expanded = true;
-  }
-  return structure;
-};
 
 const DatasetPage = ({
   pageType,
@@ -35,15 +28,13 @@ const DatasetPage = ({
 }) => {
   const router = useRouter();
   const { slug } = router.query;
-  const expandedStructure = flagExpandedItem(structure, slug);
   const deserialisedIndex = lunr.Index.load(JSON.parse(searchIndex));
 
   if (slug.length === 2) {
     const [currentConnection, currentDatabase] = slug;
     return (
-      <Layout sidebarStructure={structure} searchIndex={deserialisedIndex}>
+      <Layout>
         <DatabaseDetails
-          structure={expandedStructure}
           connection={currentConnection}
           database={currentDatabase}
         />
@@ -51,17 +42,14 @@ const DatasetPage = ({
     );
   } else if (slug.length === 3) {
     return (
-      <Layout
-        sidebarStructure={expandedStructure}
-        searchIndex={deserialisedIndex}
-      >
+      <Layout>
         <DatasetDetails metadata={metadata} content={content} />
       </Layout>
     );
   }
 
   return (
-    <Layout sidebarStructure={structure}>
+    <Layout>
       <div className="table">{slug.length}</div>;
     </Layout>
   );
@@ -77,7 +65,9 @@ export async function getStaticPaths() {
 
 export async function getStaticProps(context) {
   const datasetsStructure = await buildStructure();
-  const searchIndex = JSON.stringify(buildSearchIndexFromStructure(datasetsStructure));
+  const searchIndex = JSON.stringify(
+    buildSearchIndexFromStructure(datasetsStructure)
+  );
 
   const { slug } = context.params;
   const [conn, db, dataset] = parseSlug(slug);

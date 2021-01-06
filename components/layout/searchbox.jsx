@@ -1,9 +1,10 @@
 import React, { useState, useRef, useEffect } from 'react';
 import Mousetrap from 'mousetrap';
 
-const SearchBox = ({ className }) => {
+const SearchBox = ({ className, onSearch, onFocus }) => {
   const searchInputRef = useRef(null);
   const [searchText, setSearchText] = useState('');
+  const [timeoutHandler, setTimeoutHandler] = useState(null);
 
   const focusSearch = () => {
     searchInputRef.current.focus();
@@ -21,11 +22,34 @@ const SearchBox = ({ className }) => {
   });
 
   const updateText = (e) => {
-    setSearchText(e.target.value);
+    const inputValue = e.target.value;
+    setSearchText(inputValue);
+
+    if (timeoutHandler) {
+      clearTimeout(timeoutHandler);
+      setTimeoutHandler(null);
+    }
+
+    setTimeoutHandler(
+      setTimeout(() => {
+        onSearch(inputValue);
+      }, 500)
+    );
+  };
+
+  const onSubmit = (e) => {
+    e.preventDefault();
+
+    if (timeoutHandler) {
+      clearTimeout(timeoutHandler);
+      setTimeoutHandler(null);
+    }
+
+    onSearch(searchText);
   };
 
   return (
-    <form className={className + ' flex flex-row h-full'}>
+    <form className={className + ' flex flex-row h-full'} onSubmit={onSubmit}>
       <svg
         className="w-5 text-gray-400"
         xmlns="http://www.w3.org/2000/svg"
@@ -47,6 +71,7 @@ const SearchBox = ({ className }) => {
         className="focus:border-l-2 focus:border-blue-800 text-gray-700 h-full flex-grow px-4 focus:outline-none bg-cream"
         ref={searchInputRef}
         onChange={updateText}
+        onFocus={onFocus}
       />
     </form>
   );

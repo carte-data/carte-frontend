@@ -1,4 +1,7 @@
+import { useContext } from 'react';
+import { StructureContext } from '../lib/structure-context';
 import Panel from './common/panel.jsx';
+import Breadcrumbs from './common/Breadcrumbs.jsx';
 
 const NO_DESCRIPTION_TEXT = 'No description';
 
@@ -29,6 +32,13 @@ const Attribute = ({ label, value }) => {
 };
 
 const DatasetDetails = ({ metadata, content }) => {
+  const structure = useContext(StructureContext);
+  const breadcrumbsParts = [
+    { name: metadata.connection },
+    { name: metadata.database, url: structure[metadata.connection].items[metadata.database].url },
+    { name: metadata.title, url: structure[metadata.connection].items[metadata.database].items[metadata.title].url },
+  ];
+
   const descriptionElement =
     content && content !== '' ? (
       <p className="text-gray-600">{content}</p>
@@ -38,6 +48,7 @@ const DatasetDetails = ({ metadata, content }) => {
 
   return (
     <div>
+      <Breadcrumbs parts={breadcrumbsParts}/>
       <h1 className="text-2xl font-semibold text-gray-800 mb-4">
         {metadata.title}
       </h1>

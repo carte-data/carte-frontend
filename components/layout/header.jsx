@@ -1,6 +1,25 @@
+import React, { useState, useEffect, useContext } from 'react';
 import Link from 'next/link';
 import SearchBox from './searchbox.jsx';
 import { useRouter } from 'next/router';
+import SearchResults from './SearchResults.jsx';
+import { SearchContext } from '../../lib/search-context';
+
+const LINKS = [
+  { text: 'Home', url: '/', isActive: (pathname) => pathname == '/' },
+  {
+    text: 'Datasets',
+    url: '/dataset',
+    isActive: (pathname) => pathname.startsWith('/dataset'),
+  },
+];
+
+const performSearch = (text, index) => {
+  if (text[text.length - 1] === '*') {
+    return index.search(text);
+  }
+  return index.search(text + '*');
+};
 
 const NavLink = ({ text, url, active }) => {
   return (
@@ -17,23 +36,34 @@ const NavLink = ({ text, url, active }) => {
   );
 };
 
-const Header = ({ searchIndex }) => {
-  const links = [
-    { text: 'Home', url: '/', isActive: (pathname) => pathname == '/' },
-    {
-      text: 'Datasets',
-      url: '/dataset',
-      isActive: (pathname) => pathname.startsWith('/dataset'),
-    },
-    // {
-    //   text: 'Jobs',
-    //   url: '/job',
-    //   isActive: (pathname) => pathname.startsWith('/job'),
-    // }
-  ];
-
+const Header = () => {
   const router = useRouter();
+  const searchIndex = useContext(SearchContext);
+  const [searchResults, setSearchResults] = useState([]);
+  const [resultsOpen, setResultsOpen] = useState(false);
 
+  const handleSearch = (searchText) => {
+    if (searchText === '') {
+      setSearchResults([]);
+      setResultsOpen(false);
+    } else {
+      const resultsArr = performSearch(searchText, searchIndex);
+      console.log('RESULTS: ', searchIndex);
+      setSearchResults(resultsArr);
+      setResultsOpen(true);
+    }
+  };
+
+  const clearSearch = () => {
+    setResultsOpen(false);
+  };
+
+  useEffect(() => {
+    const handleRouteChange = () => clearSearch();
+    router.events.on('routeChangeStart', handleRouteChange);
+
+    return () => router.events.off('routeChangeStart', handleRouteChange);
+  });
 
   return (
     <header className="h-20 mx-auto px-12 sm:px-6 lg:px-32 flex flex-row">
@@ -49,9 +79,13 @@ const Header = ({ searchIndex }) => {
             </a>
           </Link>
         </div>
-        <nav className="py-6 flex items-center flex-row justify-end flex-grow border-b border-gray-300">
-          <SearchBox className="flex-grow" />
-          {links.map((link) => (
+        <nav className="py-6 relative flex items-center flex-row justify-end flex-grow border-b border-gray-300">
+          <SearchBox
+            className="flex-grow"
+            onSearch={handleSearch}
+            onFocus={() => setResultsOpen(true)}
+          />
+          {LINKS.map((link) => (
             <NavLink
               text={link.text}
               url={link.url}
@@ -59,11 +93,8 @@ const Header = ({ searchIndex }) => {
               active={link.isActive(router.pathname)}
             />
           ))}
-          <NavLink
-            text="Admin"
-            url="/admin/index.html"
-            active={false}
-          />
+          <NavLink text="Admin" url="/admin/index.html" active={false} />
+          {resultsOpen ? <SearchResults results={searchResults} /> : ''}
         </nav>
       </nav>
     </header>

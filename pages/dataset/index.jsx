@@ -1,5 +1,6 @@
 import Layout from '../../components/layout/layout.jsx';
 import { buildStructure } from '../../lib/get-paths.js';
+import { buildSearchIndexFromStructure } from '../../lib/search';
 
 const DatasetsIndex = ({ structure }) => {
   return (
@@ -13,8 +14,11 @@ export default DatasetsIndex;
 
 export async function getStaticProps() {
   const datasetsStructure = buildStructure();
+  const searchIndex = JSON.stringify(
+    buildSearchIndexFromStructure(datasetsStructure)
+  );
 
   return {
-    props: { structure: datasetsStructure },
+    props: { structure: datasetsStructure, searchIndex },
   };
 }
