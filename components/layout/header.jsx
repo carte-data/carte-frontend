@@ -1,9 +1,9 @@
 import React, { useState, useEffect, useContext } from 'react';
 import Link from 'next/link';
-import SearchBox from './searchbox.jsx';
+import SearchBox from './SearchBox.jsx';
 import { useRouter } from 'next/router';
 import SearchResults from './SearchResults.jsx';
-import { SearchContext } from '../../lib/search-context';
+import { SearchContext } from '../../lib/contexts';
 
 const LINKS = [
   { text: 'Home', url: '/', isActive: (pathname) => pathname == '/' },

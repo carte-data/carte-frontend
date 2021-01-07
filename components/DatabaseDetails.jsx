@@ -1,7 +1,7 @@
 import { useContext } from 'react';
 import Link from 'next/link';
 import Breadcrumbs from './common/Breadcrumbs.jsx';
-import { StructureContext } from '../lib/structure-context';
+import { StructureContext } from '../lib/contexts';
 
 const DatasetRow = ({ name, url }) => {
   return (

@@ -1,9 +1,7 @@
 import lunr from 'lunr';
 import { useRouter } from 'next/router';
 import '../styles/globals.css';
-import { StructureContext } from '../lib/structure-context';
-import { SearchContext } from '../lib/search-context';
-
+import { StructureContext, SearchContext } from '../lib/contexts';
 
 const flagExpandedItem = (structure, slug) => {
   if (slug && slug.length >= 2) {

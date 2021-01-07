@@ -9,9 +9,9 @@ import {
 } from '../../lib/get-paths';
 import lunr from 'lunr';
 import { buildSearchIndexFromStructure } from '../../lib/search';
-import Layout from '../../components/layout/layout.jsx';
-import DatasetDetails from '../../components/dataset-details.jsx';
-import DatabaseDetails from '../../components/database-details.jsx';
+import Layout from '../../components/layout/Layout.jsx';
+import DatasetDetails from '../../components/DatasetDetails.jsx';
+import DatabaseDetails from '../../components/DatabaseDetails.jsx';
 
 const PAGE_TYPES = {
   DB: 'database',

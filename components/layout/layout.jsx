@@ -1,5 +1,5 @@
-import Header from './header.jsx';
-import Sidebar from './sidebar.jsx';
+import Header from './Header.jsx';
+import Sidebar from './Sidebar.jsx';
 
 const PageLayout = ({ children }) => {
   return (

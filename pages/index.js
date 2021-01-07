@@ -1,5 +1,5 @@
 import Head from 'next/head'
-import Layout from '../components/layout/layout.jsx'
+import Layout from '../components/layout/Layout.jsx'
 import {
   buildStructure,
 } from '../lib/get-paths';

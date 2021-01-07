@@ -1,6 +1,6 @@
 import Link from 'next/link';
 import { useContext } from 'react';
-import { StructureContext } from '../../lib/structure-context';
+import { StructureContext } from '../../lib/contexts';
 import { datasetIdToParts, structureLookupByParts } from '../../lib/id';
 
 const ResultEntry = ({ id, parts, item }) => {

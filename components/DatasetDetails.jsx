@@ -1,6 +1,6 @@
 import { useContext } from 'react';
-import { StructureContext } from '../lib/structure-context';
-import Panel from './common/panel.jsx';
+import { StructureContext } from '../lib/contexts';
+import Panel from './common/Panel.jsx';
 import Breadcrumbs from './common/Breadcrumbs.jsx';
 
 const NO_DESCRIPTION_TEXT = 'No description';
