@@ -59,6 +59,20 @@ const Header = () => {
   };
 
   useEffect(() => {
+    const handleClick = (e) => {
+      const headerElement = document.getElementById('header');
+      const isClickInside = headerElement.contains(e.target);
+
+      if (!isClickInside) {
+        clearSearch();
+      }
+    };
+    document.addEventListener('click', handleClick);
+
+    return () => document.removeEventListener('click', handleClick);
+  });
+
+  useEffect(() => {
     const handleRouteChange = () => clearSearch();
     router.events.on('routeChangeStart', handleRouteChange);
 
@@ -66,7 +80,7 @@ const Header = () => {
   });
 
   return (
-    <header className="h-20 mx-auto px-12 sm:px-6 lg:px-32 flex flex-row">
+    <header className="h-20 mx-auto px-12 sm:px-6 lg:px-32 flex flex-row" id="header">
       <nav className="flex flex-row w-full">
         <div className="logo flex-none align-self-center w-80 flex items-center">
           <Link href="/">
@@ -83,7 +97,7 @@ const Header = () => {
           <SearchBox
             className="flex-grow"
             onSearch={handleSearch}
-            onFocus={() => setResultsOpen(true)}
+            onFocus={() => (searchResults && searchResults.length > 0 && setResultsOpen(true))}
           />
           {LINKS.map((link) => (
             <NavLink
