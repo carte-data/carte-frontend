@@ -5,7 +5,7 @@ import { datasetIdToParts, structureLookupByParts } from '../../lib/id';
 
 const ResultEntry = ({ id, parts, item }) => {
   const partSeparator = (
-    <span className="text-gray-400 font-light text-sm"> / </span>
+    <span className="text-gray-400 font-light text-sm"> &#8594; </span>
   );
   return (
     <div key={id}>
@@ -36,7 +36,7 @@ const SearchResults = ({ results }) => {
     <span className="text-gray-400">No results</span>
   );
   return (
-    <div className="absolute top-20 w-full p-6 bg-gray-200 z-1 shadow-xl">
+    <div className="absolute top-20 w-full p-6 bg-gray-200 z-1 shadow-xl border-t-2 border-blue-400 rounded-b">
       {resultsDisplay}
     </div>
   );
