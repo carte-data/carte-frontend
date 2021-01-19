@@ -54,6 +54,7 @@ const DatasetDetails = ({ metadata, content }) => {
       </h1>
       <Attribute label="Database" value={metadata.database} />
       <Attribute label="Location" value={metadata.location} />
+      <Attribute label="Type" value={metadata.table_type}/>
       <h2 className="text-md text-gray-700 mt-8 mb-2 text-xl font-medium">
         Description:
       </h2>
