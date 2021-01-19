@@ -1,30 +1,18 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Carte
 
-## Getting Started
+![Carte logo](https://cartedata.com/ligature.svg)
 
-First, run the development server:
+Carte is a static site generator for data catalogs. It takes a predefined folder structure with markdown files (with YAML frontmatter), and generates an instantly searchable, fast, and statically deployable data catalog site.
 
-```bash
-npm run dev
-# or
-yarn dev
-```
+**See a demo site here: [demo.cartedata.com](https://demo.cartedata.com)**
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+* Carte has a sister library, [Flyover](https://github.com/carte-data/flyover) that connects to your data sources and generates these markdown files that Carte operates out of.
+* This site can then be edited with the bundled Netlify CMS system, and changes made to dataset descriptions are committed back to the repo.
+* Flyover preserves any comments and descriptions added with the CMS, so it can be run periodically to pick up changes to the data schema.
+* Using Git as the source of truth enables metadata versioning, rollback, and conflict resolution
 
-You can start editing the page by modifying `pages/index.js`. The page auto-updates as you edit the file.
+## Getting started
 
-## Learn More
+## Data extraction
 
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/import?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+## Contributing 
