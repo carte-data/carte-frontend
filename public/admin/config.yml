@@ -11,9 +11,13 @@ collections:
     folder: data/datasets
     create: false
     delete: false
-    format: yaml-frontmatter
-    slug: '{{slug}}'
-    path: '{{fields.connection}}/{{fields.database}}/{{slug}}.md'
+    slug: '{{title}}'
+    path: '{{connection}}/{{database}}/{{slug}}.md'
+    preview_path: 'dataset/{{connection}}/{{database}}/{{title}}'
+    summary: 'Edited by {{commit_author}}'
+    view_groups:
+      - label: Connection
+        field: connection
     fields:
       - label: Title
         name: title
@@ -23,7 +27,12 @@ collections:
         widget: hidden
       - label: Location
         name: location
-        widget: hidden
+        widget: string
+        required: false
+      - label: Description
+        name: body
+        widget: markdown
+        required: false
       - label: Database
         name: database
         widget: hidden
