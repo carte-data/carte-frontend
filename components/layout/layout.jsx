@@ -1,7 +1,7 @@
 import Header from './Header.jsx';
 import Sidebar from './Sidebar.jsx';
 
-const PageLayout = ({ children }) => {
+const Layout = ({ children }) => {
   return (
     <div className="w-full mx-auto">
       <Header />
@@ -17,4 +17,4 @@ const PageLayout = ({ children }) => {
   );
 };
 
-export default PageLayout;
+export default Layout;
