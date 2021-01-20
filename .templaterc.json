@@ -1,0 +1,14 @@
+{
+    "files": [
+        "components/**/*",
+        "lib/**/*",
+        "pages/**/*",
+        "public/**/*",
+        "styles/**/*",
+        "./README.md",
+        "./postcss.config.js",
+        "./tailwind.config.js"
+    ],
+    "npmDependencies": true,
+    "npmScripts": true
+}

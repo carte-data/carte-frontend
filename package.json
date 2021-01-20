@@ -6,7 +6,8 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "export": "next build && next export"
+    "export": "next build && next export",
+    "update-version": "update-template https://github.com/carte-data/carte"
   },
   "dependencies": {
     "autoprefixer": "^10.1.0",
@@ -20,7 +21,8 @@
     "raw-loader": "^4.0.2",
     "react": "17.0.1",
     "react-dom": "17.0.1",
-    "tailwindcss": "^2.0.2"
+    "tailwindcss": "^2.0.2",
+    "update-template": "^1.3.1"
   },
   "prettier": {
     "singleQuote": true
