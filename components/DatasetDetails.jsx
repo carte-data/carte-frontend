@@ -1,3 +1,4 @@
+import Link from 'next/link';
 import { useContext } from 'react';
 import ReactMarkdown from 'react-markdown';
 import { StructureContext } from '../lib/contexts';
