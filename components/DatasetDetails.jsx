@@ -10,8 +10,8 @@ const NO_DESCRIPTION_TEXT = 'No description';
 const MARKDOWN_RENDERERS = {
   link: ({ children, href }) => {
     return (
-      <Link href={href}>
-        <a>{children}</a>
+      <Link href={href} passHref>
+        <a className="text-blue-400">{children}</a>
       </Link>
     );
   },
