@@ -14,6 +14,9 @@ const MARKDOWN_RENDERERS = {
       </Link>
     );
   },
+  inlineCode: ({ children }) => {
+    return <span className="font-mono text-sm">{children}</span>;
+  },
 };
 
 const Column = ({ name, type, description }) => {
