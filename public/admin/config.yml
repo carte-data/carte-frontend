@@ -14,7 +14,6 @@ collections:
     slug: '{{title}}'
     path: '{{connection}}/{{database}}/{{slug}}.md'
     preview_path: 'dataset/{{connection}}/{{database}}/{{title}}'
-    summary: 'Edited by {{commit_author}}'
     view_groups:
       - label: Connection
         field: connection
