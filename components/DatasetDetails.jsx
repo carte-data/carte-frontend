@@ -16,14 +16,14 @@ const MARKDOWN_RENDERERS = {
     );
   },
   inlineCode: ({ children }) => {
-    return <span className="font-mono text-sm">{children}</span>;
+    return <span className="font-mono text-sm text-green-400">{children}</span>;
   },
 };
 
 const Column = ({ name, type, description }) => {
   const descriptionElement =
     description && description !== '' ? (
-      <ReactMarkdown className="text-gray-600" renderers={MARKDOWN_RENDERERS}>
+      <ReactMarkdown className="text-gray-500 text-sm" renderers={MARKDOWN_RENDERERS}>
         {description}
       </ReactMarkdown>
     ) : (
@@ -78,12 +78,12 @@ const DatasetDetails = ({ metadata, content }) => {
   return (
     <div>
       <Breadcrumbs parts={breadcrumbsParts} />
-      <h1 className="text-2xl font-semibold text-gray-800 mb-4">
+      <h1 className="text-2xl font-medium text-gray-800 mb-4">
         {metadata.title}
       </h1>
+      <Attribute label="Type" value={metadata.table_type} />
       <Attribute label="Database" value={metadata.database} />
       <Attribute label="Location" value={metadata.location} />
-      <Attribute label="Type" value={metadata.table_type} />
       <h2 className="text-md text-gray-700 mt-8 mb-2 text-xl font-medium">
         Description:
       </h2>
