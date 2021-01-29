@@ -3,25 +3,25 @@
 @tailwind utilities;
 
 @layer base {
-  @font-face {
-      font-family: 'wotfard';
-      src: url('https://cartedata.com/static/fonts/wotfard-bold-webfont.eot');
-      src: url('https://cartedata.com/static/fonts/wotfard-bold-webfont.eot?#iefix') format('embedded-opentype'),
-          url('https://cartedata.com/static/fonts/wotfard-bold-webfont.woff2') format('woff2'),
-          url('https://cartedata.com/static/fonts/wotfard-bold-webfont.ttf') format('truetype');
-      font-weight: 700;
-      font-style: normal;
-  }
+  /* @font-face { */
+  /*     font-family: 'wotfard'; */
+  /*     src: url('https://cartedata.com/static/fonts/wotfard-bold-webfont.eot'); */
+  /*     src: url('https://cartedata.com/static/fonts/wotfard-bold-webfont.eot?#iefix') format('embedded-opentype'), */
+  /*         url('https://cartedata.com/static/fonts/wotfard-bold-webfont.woff2') format('woff2'), */
+  /*         url('https://cartedata.com/static/fonts/wotfard-bold-webfont.ttf') format('truetype'); */
+  /*     font-weight: 700; */
+  /*     font-style: normal; */
+  /* } */
 
-  @font-face {
-      font-family: 'wotfard';
-      src: url('https://cartedata.com/static/fonts/wotfard-light-webfont.eot');
-      src: url('https://cartedata.com/static/fonts/wotfard-light-webfont.eot?#iefix') format('embedded-opentype'),
-          url('https://cartedata.com/static/fonts/wotfard-light-webfont.woff2') format('woff2'),
-          url('https://cartedata.com/static/fonts/wotfard-light-webfont.ttf') format('truetype');
-      font-weight: 300;
-      font-style: normal;
-  }
+  /* @font-face { */
+  /*     font-family: 'wotfard'; */
+  /*     src: url('https://cartedata.com/static/fonts/wotfard-light-webfont.eot'); */
+  /*     src: url('https://cartedata.com/static/fonts/wotfard-light-webfont.eot?#iefix') format('embedded-opentype'), */
+  /*         url('https://cartedata.com/static/fonts/wotfard-light-webfont.woff2') format('woff2'), */
+  /*         url('https://cartedata.com/static/fonts/wotfard-light-webfont.ttf') format('truetype'); */
+  /*     font-weight: 300; */
+  /*     font-style: normal; */
+  /* } */
 
   @font-face {
       font-family: 'wotfard';
@@ -63,15 +63,15 @@
       font-style: normal;
   }
 
-  @font-face {
-      font-family: 'silka-mono';
-      src: url('https://cartedata.com/static/fonts/silkamono-semibold-webfont.eot');
-      src: url('https://cartedata.com/static/fonts/silkamono-semibold-webfont.eot?#iefix') format('embedded-opentype'),
-          url('https://cartedata.com/static/fonts/silkamono-semibold-webfont.woff2') format('woff2'),
-          url('https://cartedata.com/static/fonts/silkamono-semibold-webfont.ttf') format('truetype');
-      font-weight: 600;
-      font-style: normal;
-  }
+  /* @font-face { */
+  /*     font-family: 'silka-mono'; */
+  /*     src: url('https://cartedata.com/static/fonts/silkamono-semibold-webfont.eot'); */
+  /*     src: url('https://cartedata.com/static/fonts/silkamono-semibold-webfont.eot?#iefix') format('embedded-opentype'), */
+  /*         url('https://cartedata.com/static/fonts/silkamono-semibold-webfont.woff2') format('woff2'), */
+  /*         url('https://cartedata.com/static/fonts/silkamono-semibold-webfont.ttf') format('truetype'); */
+  /*     font-weight: 600; */
+  /*     font-style: normal; */
+  /* } */
 }
 
 body {
