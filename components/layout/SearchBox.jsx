@@ -11,13 +11,13 @@ const SearchBox = ({ className, onSearch, onFocus }) => {
   };
 
   useEffect(() => {
-    Mousetrap.bind(['command+k', 'ctrl+k'], () => {
+    Mousetrap.bind(['s'], () => {
       focusSearch();
       return false;
     });
 
     return function cleanup() {
-      Mousetrap.unbind(['command+k', 'ctrl+k']);
+      Mousetrap.unbind(['s']);
     };
   });
 
@@ -67,7 +67,7 @@ const SearchBox = ({ className, onSearch, onFocus }) => {
       <input
         type="text"
         value={searchText}
-        placeholder="Search for anything (&#8984;+K)"
+        placeholder="Search for anything (s)"
         className="focus:border-l-2 focus:border-blue-800 text-gray-700 h-full flex-grow px-4 focus:outline-none bg-cream"
         ref={searchInputRef}
         onChange={updateText}

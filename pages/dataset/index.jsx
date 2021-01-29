@@ -18,7 +18,7 @@ const Separator = () => (
 const DatasetsIndex = ({ numConnections, numDatabases, numDatasets }) => {
   const structure = useContext(StructureContext);
   return (
-    <Layout sidebarStructure={structure}>
+    <Layout title="Datasets">
       <h1 className="text-3xl font-semibold mb-2 grad-underline inline-block">Datasets</h1>
       <p>
         Choose a database in the sidebar or search for a dataset or database.

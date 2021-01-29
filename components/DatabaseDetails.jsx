@@ -21,7 +21,7 @@ const DatabaseDetails = ({ connection, database }) => {
   return (
     <div>
       <Breadcrumbs parts={breadcrumbsParts} />
-      <h1 className="text-2xl font-semibold text-gray-800">{database}</h1>
+      <h1 className="text-2xl font-medium text-gray-800">{database}</h1>
       <h2 className="mb-6 text-gray-400">Database</h2>
       <h2 className="text-gray-700 mt-8 mb-2 text-xl font-medium">Tables:</h2>
       <div>

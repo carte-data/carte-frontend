@@ -1,9 +1,13 @@
+import Head from 'next/head';
 import Header from './Header.jsx';
 import Sidebar from './Sidebar.jsx';
 
-const Layout = ({ children }) => {
+const Layout = ({ children, title }) => {
   return (
     <div className="w-full mx-auto">
+      <Head>
+        <title>{title ? (title + " | Carte") : "Carte"}</title>
+      </Head>
       <Header />
       <main>
         <div className="my-12 sm:px-6 mx-auto px-12 sm:px-6 lg:px-32 flex flex-row w-full flex-wrap">

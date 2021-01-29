@@ -33,7 +33,7 @@ const DatasetPage = ({
   if (slug.length === 2) {
     const [currentConnection, currentDatabase] = slug;
     return (
-      <Layout>
+      <Layout title={currentDatabase}>
         <DatabaseDetails
           connection={currentConnection}
           database={currentDatabase}
@@ -42,7 +42,7 @@ const DatasetPage = ({
     );
   } else if (slug.length === 3) {
     return (
-      <Layout>
+      <Layout title={metadata.title}>
         <DatasetDetails metadata={metadata} content={content} />
       </Layout>
     );
