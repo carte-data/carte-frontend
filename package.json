@@ -7,7 +7,8 @@
     "build": "next build",
     "start": "next start",
     "export": "next build && next export",
-    "update-version": "update-template https://github.com/carte-data/carte"
+    "update-version": "update-template https://github.com/carte-data/carte",
+    "extract": "flyover -c extract.config.yml -o data/datasets"
   },
   "dependencies": {
     "autoprefixer": "^10.1.0",
