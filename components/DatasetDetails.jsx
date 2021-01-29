@@ -7,23 +7,28 @@ import Breadcrumbs from './common/Breadcrumbs.jsx';
 
 const NO_DESCRIPTION_TEXT = 'No description';
 
-const MARKDOWN_RENDERERS = {
-  link: ({ children, href }) => {
-    return (
-      <Link href={href} passHref>
-        <a className="text-blue-400">{children}</a>
-      </Link>
-    );
-  },
-  inlineCode: ({ children }) => {
-    return <span className="font-mono text-sm">{children}</span>;
-  },
-};
+function getMarkdownRenderers(textClass) {
+  return {
+    link: ({ children, href }) => {
+      return (
+        <Link href={href} passHref>
+          <a className="text-blue-400">{children}</a>
+        </Link>
+      );
+    },
+    inlineCode: ({ children }) => {
+      return <span className="font-mono text-sm">{children}</span>;
+    },
+    paragraph: ({ children }) => {
+      return <p className={textClass}>{children}</p>
+    },
+  };
+}
 
 const Column = ({ name, type, description }) => {
   const descriptionElement =
     description && description !== '' ? (
-      <ReactMarkdown className="text-gray-300" renderers={MARKDOWN_RENDERERS}>
+      <ReactMarkdown renderers={getMarkdownRenderers('text-gray-600')}>
         {description}
       </ReactMarkdown>
     ) : (
@@ -31,7 +36,7 @@ const Column = ({ name, type, description }) => {
     );
   return (
     <div className="column pb-2" key={name}>
-      <span className="font-medium">{name}</span>
+      <span className="font-medium text-gray-700">{name}</span>
       <span className="px-1 ml-4 rounded border-gray-300 inline-block border text-xs font-mono">
         {type}
       </span>
@@ -68,14 +73,15 @@ const DatasetDetails = ({ metadata, content }) => {
 
   const descriptionElement =
     content && content !== '' ? (
-      <ReactMarkdown className="text-gray-600" renderers={MARKDOWN_RENDERERS}>
+      <ReactMarkdown className="text-gray-600" renderers={getMarkdownRenderers("text-gray-700")}>
         {content}
       </ReactMarkdown>
     ) : (
       <p className="text-gray-300 text-sm">{NO_DESCRIPTION_TEXT}</p>
     );
 
-  const tableType = metadata.table_type[0].toUpperCase() + metadata.table_type.substring(1);
+  const tableType =
+    metadata.table_type[0].toUpperCase() + metadata.table_type.substring(1);
 
   return (
     <div>
