@@ -2,6 +2,8 @@ import { useContext } from 'react';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 import { StructureContext } from '../../lib/contexts';
+import ConnectionIcon from '../icons/Connection.jsx';
+import DatabaseIcon from '../icons/Database.jsx';
 
 const SIDEBAR_HIGHLIGHT_COLOUR = 'text-green-500';
 
@@ -9,7 +11,7 @@ const SidebarSublink = ({ label, url }) => {
   const router = useRouter();
   const isActive = url === router.asPath;
   return (
-    <div className="mb-0.5">
+    <div className="mb-0.5" key={label}>
       <Link href={url}>
         <a
           className={
@@ -27,27 +29,32 @@ const SidebarSublink = ({ label, url }) => {
 const SidebarSection = ({ heading, items, expandCurrent }) => {
   return (
     <div className="sidebar-section w-full" key={heading}>
-      <h3 className="font-medium text-xl my-2 text-gray-800">{heading}</h3>
+      <h3 className="font-medium text-lg my-2 text-gray-800">
+        <span className="h-3 mr-2 inline-block">
+          <ConnectionIcon className="h-4" />
+        </span>
+        {heading}
+      </h3>
       <div className="items-level-2 pl-4">
         {Object.values(items).map((item) => (
           <div key={item.name}>
             <Link href={item.url}>
               <a
                 className={
-                  'hover:text-blue-400 text-lg ' +
+                  'hover:text-blue-400 text-md ' +
                   (item.expanded ? SIDEBAR_HIGHLIGHT_COLOUR : 'text-gray-700')
                 }
               >
+                <span className="h-3 mr-2 inline-block">
+                  <DatabaseIcon className="h-4"/>
+                </span>
                 {item.name}
               </a>
             </Link>
             {item.expanded && expandCurrent ? (
               <div className="sublinks pl-4 mt-2 mb-4 border-l border-gray-200">
                 {Object.values(item.items).map((subItem) => (
-                  <SidebarSublink
-                    label={subItem.name}
-                    url={subItem.url}
-                  />
+                  <SidebarSublink label={subItem.name} url={subItem.url} />
                 ))}
               </div>
             ) : (
@@ -61,8 +68,8 @@ const SidebarSection = ({ heading, items, expandCurrent }) => {
 };
 
 SidebarSection.defaultProps = {
-  expandCurrent: false
-}
+  expandCurrent: false,
+};
 
 const Sidebar = () => {
   const structure = useContext(StructureContext);
@@ -70,10 +77,7 @@ const Sidebar = () => {
   return (
     <div className="fadeout-right items-level-1">
       {Object.values(structure).map((item) => (
-        <SidebarSection
-          heading={item.name}
-          items={item.items}
-        />
+        <SidebarSection heading={item.name} items={item.items} />
       ))}
     </div>
   );

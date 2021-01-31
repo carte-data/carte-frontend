@@ -48,7 +48,6 @@ const Header = () => {
       setResultsOpen(false);
     } else {
       const resultsArr = performSearch(searchText, searchIndex);
-      console.log('RESULTS: ', searchIndex);
       setSearchResults(resultsArr);
       setResultsOpen(true);
     }
@@ -87,7 +86,7 @@ const Header = () => {
             <a className="">
               <img
                 src="/img/ligature.svg"
-                className="w-auto h-12"
+                className="w-auto h-6"
                 alt="Carte logo"
               />
             </a>
