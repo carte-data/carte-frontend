@@ -5,6 +5,7 @@
         "pages/**/*",
         "public/**/*",
         "styles/**/*",
+        "scripts/**/*",
         "./README.md",
         "./postcss.config.js",
         "./tailwind.config.js"
