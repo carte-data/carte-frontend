@@ -4,6 +4,7 @@ import SearchBox from './SearchBox.jsx';
 import { useRouter } from 'next/router';
 import SearchResults from './SearchResults.jsx';
 import { SearchContext } from '../../lib/contexts';
+import MenuIcon from '../icons/Menu.jsx';
 
 const LINKS = [
   { text: 'Home', url: '/', isActive: (pathname) => pathname == '/' },
@@ -21,18 +22,20 @@ const performSearch = (text, index) => {
   return index.search(text + '*');
 };
 
-const NavLink = ({ text, url, active }) => {
+const NavLink = ({ text, url, active, block, className }) => {
   return (
-    <Link href={url}>
-      <a
-        className={
-          'text-gray-800 hover:text-blue-400 transition-colors mx-3 py-2 rounded-md font-medium duration-75' +
-          (active ? ' grad-underline' : '')
-        }
-      >
-        {text}
-      </a>
-    </Link>
+    <div className={className + ' ' + (block ? 'block' : 'inline')}>
+      <Link href={url}>
+        <a
+          className={
+            'text-gray-800 hover:text-blue-400 transition-colors mx-3 py-2 rounded-md font-medium duration-75' +
+            (active ? ' grad-underline' : '')
+          }
+        >
+          {text}
+        </a>
+      </Link>
+    </div>
   );
 };
 
@@ -41,6 +44,7 @@ const Header = ({ horizontalClassName, sidebarClassName }) => {
   const searchIndex = useContext(SearchContext);
   const [searchResults, setSearchResults] = useState([]);
   const [resultsOpen, setResultsOpen] = useState(false);
+  const [hamburgerOpen, setHamburgerOpen] = useState(false);
 
   const handleSearch = (searchText) => {
     if (searchText === '') {
@@ -55,6 +59,10 @@ const Header = ({ horizontalClassName, sidebarClassName }) => {
 
   const clearSearch = () => {
     setResultsOpen(false);
+  };
+
+  const toggleMobileNav = () => {
+    setHamburgerOpen(!hamburgerOpen);
   };
 
   useEffect(() => {
@@ -78,46 +86,66 @@ const Header = ({ horizontalClassName, sidebarClassName }) => {
     return () => router.events.off('routeChangeStart', handleRouteChange);
   });
 
+  const navLinks = (isBlock, className) =>
+    LINKS.map((link) => (
+      <NavLink
+        text={link.text}
+        url={link.url}
+        key={link.text}
+        active={link.isActive(router.pathname)}
+        block={isBlock}
+        className={className}
+      />
+    ));
+
   return (
-    <header className={'md:h-20 flex flex-row flex-wrap ' + horizontalClassName} id="header">
+    <>
+      <header
+        className={'h-20 flex flex-row ' + horizontalClassName}
+        id="header"
+      >
+        <div
+          className={
+            'logo align-self-center flex items-center mr-8 ' + sidebarClassName
+          }
+        >
+          <Link href="/">
+            <a className="">
+              <img
+                src="/img/ligature.svg"
+                className="w-auto h-6"
+                alt="Carte logo"
+              />
+            </a>
+          </Link>
+        </div>
+        <nav className="relative flex items-center flex-row justify-end flex-grow border-b border-gray-300">
+          <SearchBox
+            className="flex-grow"
+            onSearch={handleSearch}
+            onFocus={() =>
+              searchResults && searchResults.length > 0 && setResultsOpen(true)
+            }
+          />
+          <div className="nav-links hidden md:inline-block">
+            {navLinks(false)}
+            <NavLink text="Admin" url="/admin/index.html" active={false} />
+          </div>
+          <div className="md:hidden mobile-nav-trigger" onClick={toggleMobileNav}>
+            <button><MenuIcon className="h-4"/></button>
+          </div>
+          {resultsOpen ? <SearchResults results={searchResults} /> : ''}
+        </nav>
+      </header>
       <div
         className={
-          'logo align-self-center flex items-center ' +
-          sidebarClassName
+          'mobile-nav w-full md:hidden bg-gray-100 pb-4' +
+          (hamburgerOpen ? '' : ' hidden')
         }
       >
-        <Link href="/">
-          <a className="">
-            <img
-              src="/img/ligature.svg"
-              className="w-auto h-6"
-              alt="Carte logo"
-            />
-          </a>
-        </Link>
+        {navLinks(true, 'pt-4 w-full px-4')}
       </div>
-      <nav className="relative flex items-center flex-row justify-end lg:flex-grow border-b border-gray-300">
-        <SearchBox
-          className="flex-grow"
-          onSearch={handleSearch}
-          onFocus={() =>
-            searchResults && searchResults.length > 0 && setResultsOpen(true)
-          }
-        />
-        <div className="nav-links">
-          {LINKS.map((link) => (
-            <NavLink
-              text={link.text}
-              url={link.url}
-              key={link.text}
-              active={link.isActive(router.pathname)}
-            />
-          ))}
-          <NavLink text="Admin" url="/admin/index.html" active={false} />
-        </div>
-        {resultsOpen ? <SearchResults results={searchResults} /> : ''}
-      </nav>
-    </header>
+    </>
   );
 };
 
