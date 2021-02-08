@@ -51,3 +51,4 @@ collections:
           - label: Description
             name: description
             widget: text
+            required: false
