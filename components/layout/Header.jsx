@@ -36,7 +36,7 @@ const NavLink = ({ text, url, active }) => {
   );
 };
 
-const Header = () => {
+const Header = ({ horizontalClassName, sidebarClassName }) => {
   const router = useRouter();
   const searchIndex = useContext(SearchContext);
   const [searchResults, setSearchResults] = useState([]);
@@ -79,25 +79,32 @@ const Header = () => {
   });
 
   return (
-    <header className="h-20 mx-auto px-12 sm:px-6 lg:px-32 flex flex-row" id="header">
-      <nav className="flex flex-row w-full">
-        <div className="logo flex-none align-self-center w-80 flex items-center">
-          <Link href="/">
-            <a className="">
-              <img
-                src="/img/ligature.svg"
-                className="w-auto h-6"
-                alt="Carte logo"
-              />
-            </a>
-          </Link>
-        </div>
-        <nav className="py-6 relative flex items-center flex-row justify-end flex-grow border-b border-gray-300">
-          <SearchBox
-            className="flex-grow"
-            onSearch={handleSearch}
-            onFocus={() => (searchResults && searchResults.length > 0 && setResultsOpen(true))}
-          />
+    <header className={'md:h-20 flex flex-row flex-wrap ' + horizontalClassName} id="header">
+      <div
+        className={
+          'logo align-self-center flex items-center ' +
+          sidebarClassName
+        }
+      >
+        <Link href="/">
+          <a className="">
+            <img
+              src="/img/ligature.svg"
+              className="w-auto h-6"
+              alt="Carte logo"
+            />
+          </a>
+        </Link>
+      </div>
+      <nav className="relative flex items-center flex-row justify-end lg:flex-grow border-b border-gray-300">
+        <SearchBox
+          className="flex-grow"
+          onSearch={handleSearch}
+          onFocus={() =>
+            searchResults && searchResults.length > 0 && setResultsOpen(true)
+          }
+        />
+        <div className="nav-links">
           {LINKS.map((link) => (
             <NavLink
               text={link.text}
@@ -107,8 +114,8 @@ const Header = () => {
             />
           ))}
           <NavLink text="Admin" url="/admin/index.html" active={false} />
-          {resultsOpen ? <SearchResults results={searchResults} /> : ''}
-        </nav>
+        </div>
+        {resultsOpen ? <SearchResults results={searchResults} /> : ''}
       </nav>
     </header>
   );
