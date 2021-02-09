@@ -1,5 +1,5 @@
 {
-  "name": "carte",
+  "name": "carte-frontend",
   "version": "0.1.0",
   "private": true,
   "scripts": {
@@ -14,6 +14,7 @@
     "autoprefixer": "^10.1.0",
     "glob": "^7.1.6",
     "gray-matter": "^4.0.2",
+    "immer": ">=8.0.1",
     "lunr": "^2.3.9",
     "mousetrap": "^1.6.5",
     "netlify-cms-app": "^2.14.8",
