@@ -17,7 +17,6 @@ plugins:
   - search:
       separator: '[\s\-\.\_]+'
       lang: en
-  - markdown-filter
 markdown_extensions:
   - meta
   - attr_list
