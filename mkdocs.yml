@@ -4,7 +4,6 @@ repo_name: carte-data/carte-frontend
 site_url: https://cartedata.com
 theme:
   name: material
-  custom_dir: overrides
   palette:
     primary: black
     accent: teal
