@@ -6,7 +6,7 @@
     "build": "next build",
     "dev": "next dev",
     "export": "next build && next export",
-    "extract": "carte -c extract.config.yml -o data/datasets",
+    "extract": "carte extract extract.config.yml -o data/datasets",
     "start": "next start",
     "update-version": "./scripts/update-version.sh"
   },
