@@ -16,7 +16,8 @@ columns:
     description: An optional second line of an address.
   - name: district
     type: text
-    description: The region of an address, this may be a state, province, prefecture, etc.
+    description: The region of an address, this may be a state, province, prefecture,
+      etc.
   - name: city_id
     type: integer
     description: A foreign key pointing to the [city](postgres/pagila/city) table.

@@ -6,7 +6,8 @@ database: pagila
 columns:
   - name: actor_id
     type: integer
-    description: A surrogate primary key used to uniquely identify each actor in the table.
+    description: A surrogate primary key used to uniquely identify each actor in the
+      table.
   - name: first_name
     type: text
     description: The actor first name.

@@ -6,7 +6,8 @@ database: pagila
 columns:
   - name: city_id
     type: integer
-    description: A surrogate primary key used to uniquely identify each city in the table.
+    description: A surrogate primary key used to uniquely identify each city in the
+      table.
   - name: city
     type: text
     description: The name of the city.

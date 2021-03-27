@@ -21,8 +21,8 @@ columns:
     description: The staff member email address.
   - name: store_id
     type: integer
-    description: The staff member “home store.” The employee can work at other
-      stores but is generally assigned to the store listed.
+    description: The staff member “home store.” The employee can work at other stores
+      but is generally assigned to the store listed.
   - name: active
     type: boolean
     description: Whether this is an active employee. If employees leave, their rows
