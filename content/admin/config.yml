@@ -2,11 +2,10 @@ backend:
   name: github
   branch: main # Branch to update (optional; defaults to master)
   repo: carte-data/carte-frontend
-  base_url: "https://cartedata.com"
+  base_url: "https://api.cartedata.com"
   auth_endpoint: "/auth/redirect"
 media_folder: "content/images/uploads" # Media files will be stored in the repo under static/images/uploads
 public_folder: "/images/uploads" # The src attribute for uploaded media will begin with /images/uploads
-display_url: "https://cartedata.com"
 collections:
   - name: datasets
     label: Dataset

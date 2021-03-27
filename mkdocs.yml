@@ -1,6 +1,7 @@
 site_name: Carte
 repo_url: https://github.com/carte-data/carte-frontend
 repo_name: carte-data/carte-frontend
+site_url: https://cartedata.com
 theme:
   name: material
   custom_dir: overrides
@@ -11,9 +12,7 @@ theme:
     - search.highlight
     - search.suggest
     - navigation.sections
-repo_url: https://github.com/carte-data/carte
 docs_dir: content
-site_url: https://cartedata.com
 plugins:
   - search:
       separator: '[\s\-\.\_]+'
