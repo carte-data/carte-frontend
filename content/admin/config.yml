@@ -1,0 +1,43 @@
+backend:
+  name: github
+  branch: main # Branch to update (optional; defaults to master)
+  repo: carte-data/carte-frontend
+  base_url: "https://cartedata.com"
+  auth_endpoint: "/auth/redirect"
+media_folder: "content/images/uploads" # Media files will be stored in the repo under static/images/uploads
+public_folder: "/images/uploads" # The src attribute for uploaded media will begin with /images/uploads
+display_url: "https://cartedata.com"
+collections:
+  - name: datasets
+    label: Dataset
+    folder: 'datasets'
+    path: '{{connection}}/{{database}}/{{slug}}'
+    create: true
+    slug: '{{title}}'
+    fields:
+      - {label: "Title", name: "title", widget: "string"}
+      - {label: "Location", name: "location", widget: "string", required: false}
+      - {label: "Description", name: "body", widget: "markdown", required: false}
+      - {label: "Connection", name: "connection", widget: "hidden"}
+      - {label: "Database", name: "database", widget: "hidden"}
+      - label: Columns
+        name: columns
+        widget: list
+        summary: '{{fields.name}}'
+        allow_add: false
+        collapsed: true
+        fields:
+          - label: Column name
+            name: name
+            widget: string
+          - label: Type
+            name: type
+            widget: string
+          - label: Description
+            name: description
+            widget: markdown
+            required: false
+          - label: Example value
+            name: example
+            widget: string
+            required: false

@@ -1,0 +1,93 @@
+h1.page-title {
+    margin-bottom: 8px;
+}
+
+#description {
+    margin-top: 10px;
+}
+
+.edit-link {
+    font-weight: 700;
+    margin-bottom: 40px;
+    display: block;
+}
+
+h5.column-name {
+    display: inline-block;
+    margin: 0;
+    color: var(--md-default-fg-color);
+}
+
+.column-name + p {
+    display: inline-block;
+    margin: 0;
+}
+
+.column-name + p .column-type {
+    border: 1px black;
+    display: inline-block;
+    color: gray;
+    font-size: 0.7rem;
+    margin-left: 12px;
+    margin-bottom: 0;
+}
+
+.column-description {
+    margin-top: 0.3rem;
+    margin-bottom: 0.4rem;
+    font-size: 0.75rem;
+    display: block;
+}
+
+p.column-value {
+    display: inline-block;
+    margin: 0;
+    margin-top: -1.8rem;
+    border: 1px solid var(--md-default-fg-color--light);
+    border-radius: 3px;
+    padding: 0 6px;
+    font-size: 0.6rem;
+    color: var(--md-default-fg-color--light);
+}
+
+.column .column-description>p {
+    color: var(--md-default-fg-color);
+}
+
+
+.no-description {
+    color: var(--md-default-fg-color--lighter);
+}
+
+h4.attribute {
+    margin: 0 0 0.5rem 0;
+    display: inline-block;
+}
+
+h4.attribute + p {
+    display: inline-block;
+    margin: 0;
+}
+
+p.attribute-break {
+    margin: 0 0 3px 0;
+    font-size: 0;
+}
+
+p.column-name-break {
+    margin: 0 0 10px 0;
+    font-size: 0;
+}
+
+p.column-value-break {
+    margin: 0 0 18px 0;
+    font-size: 0;
+}
+
+.column-values {
+    display: none;
+}
+
+.edit-link:after {
+  content: 'Edit';
+}

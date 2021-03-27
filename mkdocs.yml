@@ -1,0 +1,27 @@
+site_name: Carte
+repo_url: https://github.com/carte-data/carte-frontend
+repo_name: carte-data/carte-frontend
+theme:
+  name: material
+  custom_dir: overrides
+  palette:
+    primary: black
+    accent: teal
+  features:
+    - search.highlight
+    - search.suggest
+    - navigation.sections
+repo_url: https://github.com/carte-data/carte
+docs_dir: content
+site_url: https://cartedata.com
+plugins:
+  - search:
+      separator: '[\s\-\.\_]+'
+      lang: en
+  - markdown-filter
+markdown_extensions:
+  - meta
+  - attr_list
+extra_css:
+  - stylesheets/extra.css
+edit_uri: ""
